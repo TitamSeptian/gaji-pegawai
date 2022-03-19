@@ -12,34 +12,21 @@ import {
   Tbody,
   //   THead,
   Td,
+  // Badge,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
-function Gaji() {
-  const gajis = [
-    {
-      id: 1,
-      nik: '111111111111',
-      nama: 'Nama Pegawai 1',
-      jns_klm: 'Laki-laki',
-      golongan: 'I',
-      gapok: 1000000,
-      tunjangan: 500000,
-      potongan: 100000,
-      total: 15000000,
-    },
-    {
-      id: 2,
-      nik: '211111111111',
-      nama: 'Nama Pegawai 2',
-      jns_klm: 'Laki-laki',
-      golongan: 'I',
-      gapok: 1000000,
-      tunjangan: 500000,
-      potongan: 100000,
-      total: 15000000,
-    },
-  ];
+function Gaji({ pegawais, deletePegawai }) {
+  if (!pegawais.length) {
+    return (
+      <Alert status="info">
+        <AlertIcon />
+        Belum ada pegawai
+      </Alert>
+    );
+  }
   return (
     <VStack
       divider={<StackDivider />}
@@ -51,48 +38,51 @@ function Gaji() {
       maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
       alignItems="stretch"
     >
-      {gajis.map(gaji => (
-        <HStack>
+      {pegawais.map(pegawai => (
+        <HStack key={pegawai.id}>
           <VStack alignItems="left">
             <Text
               fontSize="xs"
               fontWeight="extrabold"
               textTransform="uppercase"
             >
-              {gaji.nik}
+              {pegawai.nik}
             </Text>
-            <Text color="green.700">{gaji.nama}</Text>
+            <Text color="green.700">{pegawai.nama}</Text>
             <Table size="sm">
               <Tbody>
                 <Tr>
                   <Td>
                     <Text>Tunjuangan</Text>
                   </Td>
-                  <Td textAlign="right">{gaji.gapok}</Td>
+                  <Td textAlign="right">{pegawai.gapok}</Td>
                 </Tr>
                 <Tr>
                   <Td>
                     <Text>Gaji Pokok</Text>
                   </Td>
-                  <Td textAlign="right">{gaji.gapok}</Td>
+                  <Td textAlign="right">{pegawai.gapok}</Td>
                 </Tr>
                 <Tr>
                   <Td>
-                    <Text>Gaji Potongan</Text>
+                    <Text>Potongan</Text>
                   </Td>
-                  <Td textAlign="right">{gaji.potongan}</Td>
+                  <Td textAlign="right">{pegawai.potongan}</Td>
                 </Tr>
                 <Tr>
                   <Td textAlign="right">
                     <Text fontWeight="bold">Total</Text>
                   </Td>
-                  <Td textAlign="right">{gaji.total}</Td>
+                  <Td textAlign="right">{pegawai.total}</Td>
                 </Tr>
               </Tbody>
             </Table>
           </VStack>
           <Spacer />
-          <IconButton icon={<FaTrash />} />
+          <IconButton
+            icon={<FaTrash />}
+            onClick={() => deletePegawai(pegawai.id)}
+          />
         </HStack>
       ))}
     </VStack>
