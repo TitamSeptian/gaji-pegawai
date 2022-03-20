@@ -72,6 +72,7 @@ const AddGaji = ({ addPegawai }) => {
                   variant="filled"
                   placeholder="Ex. 3211111111111111"
                   onChange={e => setNik(e.target.value)}
+                  autoComplete="off"
                 />
               </FormControl>
               <FormControl isRequired mt="4">
@@ -81,6 +82,7 @@ const AddGaji = ({ addPegawai }) => {
                   type="text"
                   variant="filled"
                   placeholder="Ex. Jhon Doe"
+                  autoComplete="off"
                   onChange={e => setNama(e.target.value)}
                 />
               </FormControl>
@@ -198,6 +200,7 @@ const AddGaji = ({ addPegawai }) => {
                   type="text"
                   variant="filled"
                   placeholder="200000000"
+                  autoComplete="off"
                   onChange={e => setTunjangan(e.target.value)}
                 />
               </FormControl>
@@ -208,6 +211,7 @@ const AddGaji = ({ addPegawai }) => {
                   type="text"
                   variant="filled"
                   placeholder="300000000"
+                  autoComplete="off"
                   onChange={e => setPotongan(e.target.value)}
                 />
               </FormControl>

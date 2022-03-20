@@ -4,6 +4,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import Gaji from './components/Gaji';
 import AddGaji from './components/AddGaji';
 import ConfigGapok from './components/ConfigGapok';
+
 function App() {
   const [pegawai, setPegawai] = useState(
     () => JSON.parse(localStorage.getItem('pegawai')) || []
@@ -117,16 +118,13 @@ function App() {
   }
 
   function getTotal(gapok, tunjangan, potongan) {
-    gapok = Number(gapok);
-    tunjangan = Number(tunjangan);
-    potongan = Number(potongan);
-    return gapok + tunjangan - potongan;
+    return Number(gapok) + Number(tunjangan) - Number(potongan);
   }
 
   function addPegawai(x) {
     const gapok = gapokByGol(x.gol);
     x.gapok = gapok;
-    x.total = getTotal(gapok, x.tunjangan, x.potongan);
+    x.total = Number(getTotal(gapok, x.tunjangan, x.potongan));
     // console.log(x);
     setPegawai([...pegawai, x]);
   }
@@ -139,7 +137,7 @@ function App() {
     localStorage.setItem('pegawai', JSON.stringify(pegawai));
     localStorage.setItem('gapok', JSON.stringify(gapok));
     // syncGapokPegawai(pegawai);
-    syncGajiPegawai(pegawai);
+    // syncGajiPegawai(pegawai);
   }, [pegawai, gapok]);
   return (
     <ChakraProvider theme={theme}>
@@ -155,8 +153,14 @@ function App() {
         <Heading mb={8} fontWeight="bold" size="2xl">
           GAJI PEGAWAI
         </Heading>
-        <Gaji pegawais={pegawai} deletePegawai={deletePegawai} mt={4} />
+
         <AddGaji addPegawai={addPegawai} />
+        <Gaji
+          pegawais={pegawai}
+          deletePegawai={deletePegawai}
+          GetTotal={getTotal}
+          // mt={4}
+        />
       </VStack>
     </ChakraProvider>
   );

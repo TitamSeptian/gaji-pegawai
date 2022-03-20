@@ -17,8 +17,15 @@ import {
   AlertIcon,
 } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
+import CGaji from './cGaji';
+import toRupiah from '@develoka/angka-rupiah-js';
 
 function Gaji({ pegawais, deletePegawai }) {
+  function getTotal(gapok, tunjangan, potongan) {
+    console.log(gapok, tunjangan, potongan);
+    return Number(gapok) + Number(tunjangan) - Number(potongan);
+  }
+
   if (!pegawais.length) {
     return (
       <Container>
@@ -54,32 +61,14 @@ function Gaji({ pegawais, deletePegawai }) {
             >
               {pegawai.nik}
             </Text>
-            <Text color="green.700">{pegawai.nama}</Text>
+            <Text color="grey.700">{pegawai.nama}</Text>
             <Table size="sm">
               <Tbody>
                 <Tr>
-                  <Td>
-                    <Text>Tunjuangan</Text>
+                  <Td textAlign="left">
+                    <Text fontWeight="bold">Gaji Total</Text>
                   </Td>
-                  <Td textAlign="right">{pegawai.tunjangan}</Td>
-                </Tr>
-                <Tr>
-                  <Td>
-                    <Text>Gaji Pokok</Text>
-                  </Td>
-                  <Td textAlign="right">{pegawai.gapok}</Td>
-                </Tr>
-                <Tr>
-                  <Td>
-                    <Text>Potongan</Text>
-                  </Td>
-                  <Td textAlign="right">{pegawai.potongan}</Td>
-                </Tr>
-                <Tr>
-                  <Td textAlign="right">
-                    <Text fontWeight="bold">Total</Text>
-                  </Td>
-                  <Td textAlign="right">{pegawai.total}</Td>
+                  <Td textAlign="right">{toRupiah(parseInt(pegawai.total))}</Td>
                 </Tr>
               </Tbody>
             </Table>
@@ -89,6 +78,7 @@ function Gaji({ pegawais, deletePegawai }) {
             icon={<FaTrash />}
             onClick={() => deletePegawai(pegawai.id)}
           />
+          <CGaji pegawai={pegawai} />
         </HStack>
       ))}
     </VStack>

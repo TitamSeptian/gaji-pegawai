@@ -99,9 +99,9 @@ const ConfigGapok = props => {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} type="submit">
+              {/* <Button colorScheme="blue" mr={3} type="submit">
                 Submit
-              </Button>
+              </Button> */}
               <Button variant="ghost" onClick={onClose}>
                 Close
               </Button>
