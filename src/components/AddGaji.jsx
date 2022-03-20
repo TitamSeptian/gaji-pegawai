@@ -54,7 +54,7 @@ const AddGaji = ({ addPegawai }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Tambah Pegawai</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

@@ -12,7 +12,7 @@ import {
   Tbody,
   //   THead,
   Td,
-  // Badge,
+  Container,
   Alert,
   AlertIcon,
 } from '@chakra-ui/react';
@@ -21,10 +21,16 @@ import { FaTrash } from 'react-icons/fa';
 function Gaji({ pegawais, deletePegawai }) {
   if (!pegawais.length) {
     return (
-      <Alert status="info">
-        <AlertIcon />
-        Belum ada pegawai
-      </Alert>
+      <Container>
+        <Alert
+          status="info"
+          borderRadius="lg"
+          maxW={{ base: '90vw', sm: '80vw', lg: '50vw', xl: '40vw' }}
+        >
+          <AlertIcon />
+          Belum ada pegawai
+        </Alert>
+      </Container>
     );
   }
   return (
