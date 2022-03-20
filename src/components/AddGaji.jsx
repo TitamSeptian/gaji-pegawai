@@ -13,9 +13,9 @@ import {
   FormControl,
   FormLabel,
   // FormErrorMessage,
-  // FormHelperText,
+  Text,
   Input,
-  // Form,
+  VStack,
   Stack,
   Radio,
   RadioGroup,
@@ -30,6 +30,8 @@ const AddGaji = ({ addPegawai }) => {
   const [nik, setNik] = useState('');
   const [jk, setJk] = useState('');
   const [gol, setGol] = useState('');
+  const [tunjangan, setTunjangan] = useState('');
+  const [potongan, setPotongan] = useState('');
   const submitHandle = e => {
     // console.log(
     //   `Nama: ${nama} | NIK: ${nik} | Jenis Kelamin: ${jk} | Golongan: ${gol}`
@@ -40,6 +42,10 @@ const AddGaji = ({ addPegawai }) => {
       nama: nama,
       jk: jk,
       gol: gol,
+      tunjangan: tunjangan,
+      gapok: 0,
+      potongan: potongan,
+      total: 0,
     };
     e.preventDefault();
     addPegawai(pegawai);
@@ -100,23 +106,110 @@ const AddGaji = ({ addPegawai }) => {
               <FormControl isRequired mt="4">
                 <FormLabel htmlFor="gol">Golongan</FormLabel>
                 <RadioGroup name="gol" id="gol">
-                  <VStack>
-                    <Stack direction="row">
-                      <Radio value="I" onChange={e => setGol(e.target.value)}>
-                        I
+                  <Stack
+                    direction="column"
+                    borderColor="gray.100"
+                    borderWidth="2px"
+                    p="4"
+                    borderRadius="lg"
+                  >
+                    <Text>Golongan I</Text>
+                    <Stack direction="row" alignContent="left">
+                      <Radio value="Ia" onChange={e => setGol(e.target.value)}>
+                        Ia
                       </Radio>
-                      <Radio value="II" onChange={e => setGol(e.target.value)}>
-                        II
+                      <Radio value="Ib" onChange={e => setGol(e.target.value)}>
+                        Ib
                       </Radio>
-                      <Radio value="III" onChange={e => setGol(e.target.value)}>
-                        III
+                      <Radio value="Ic" onChange={e => setGol(e.target.value)}>
+                        Ic
                       </Radio>
-                      <Radio value="IV" onChange={e => setGol(e.target.value)}>
-                        IV
+                      <Radio value="Id" onChange={e => setGol(e.target.value)}>
+                        Id
                       </Radio>
                     </Stack>
-                  </VStack>
+                    <Text>Golongan II</Text>
+                    <Stack direction="row" alignContent="left">
+                      <Radio value="IIa" onChange={e => setGol(e.target.value)}>
+                        IIa
+                      </Radio>
+                      <Radio value="IIb" onChange={e => setGol(e.target.value)}>
+                        IIb
+                      </Radio>
+                      <Radio value="IIc" onChange={e => setGol(e.target.value)}>
+                        IIc
+                      </Radio>
+                      <Radio value="IId" onChange={e => setGol(e.target.value)}>
+                        IId
+                      </Radio>
+                    </Stack>
+                    <Text>Golongan III</Text>
+                    <Stack direction="row" alignContent="left">
+                      <Radio
+                        value="IIIa"
+                        onChange={e => setGol(e.target.value)}
+                      >
+                        IIIa
+                      </Radio>
+                      <Radio
+                        value="IIIb"
+                        onChange={e => setGol(e.target.value)}
+                      >
+                        IIIb
+                      </Radio>
+                      <Radio
+                        value="IIIc"
+                        onChange={e => setGol(e.target.value)}
+                      >
+                        IIIc
+                      </Radio>
+                      <Radio
+                        value="IIId"
+                        onChange={e => setGol(e.target.value)}
+                      >
+                        IIId
+                      </Radio>
+                    </Stack>
+                    <Text>Golongan IV</Text>
+                    <Stack direction="row" alignContent="left">
+                      <Radio value="IVa" onChange={e => setGol(e.target.value)}>
+                        IVa
+                      </Radio>
+                      <Radio value="IVb" onChange={e => setGol(e.target.value)}>
+                        IVb
+                      </Radio>
+                      <Radio value="IVc" onChange={e => setGol(e.target.value)}>
+                        IVc
+                      </Radio>
+                      <Radio value="IVd" onChange={e => setGol(e.target.value)}>
+                        IVd
+                      </Radio>
+                      <Radio value="IVe" onChange={e => setGol(e.target.value)}>
+                        IVe
+                      </Radio>
+                    </Stack>
+                  </Stack>
                 </RadioGroup>
+              </FormControl>
+              <FormControl isRequired mt="4">
+                <FormLabel htmlFor="tunjangan">Tunjangan(Rp)</FormLabel>
+                <Input
+                  id="tunjanagan"
+                  type="text"
+                  variant="filled"
+                  placeholder="200000000"
+                  onChange={e => setTunjangan(e.target.value)}
+                />
+              </FormControl>
+              <FormControl isRequired mt="4">
+                <FormLabel htmlFor="tunjangan">Potongan(Rp)</FormLabel>
+                <Input
+                  id="potongan"
+                  type="text"
+                  variant="filled"
+                  placeholder="300000000"
+                  onChange={e => setPotongan(e.target.value)}
+                />
               </FormControl>
             </ModalBody>
 

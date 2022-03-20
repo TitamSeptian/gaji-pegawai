@@ -55,7 +55,7 @@ function Gaji({ pegawais, deletePegawai }) {
                   <Td>
                     <Text>Tunjuangan</Text>
                   </Td>
-                  <Td textAlign="right">{pegawai.gapok}</Td>
+                  <Td textAlign="right">{pegawai.tunjangan}</Td>
                 </Tr>
                 <Tr>
                   <Td>
